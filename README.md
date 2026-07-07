@@ -1,12 +1,35 @@
 # iKamand App
 
 # Gilles: pour faire fonctionner le ikamand
-1. Brancher le ikamand électriquement
-2. Appuyer 5-10 secondes sur le bouton setup du ikamand jusqu'à ce que la LED bleue clignotte rapidement. Il est alors en mode pairing de wifi. À ce moment, le ikamand émet un réseau wifi ikamand-xxx.
-3. Sur un ordinateur, se connecter au wifi du ikamand
-4. Sur l'ordinateur, démarrer le serveur en double cliquant sur "start_ikamand.bat".
-5. Sur un navigateur web, accéder à http://localhost:3000/#
-6. Un dashboard devrait apparaitre avec la page web pour contrôler le ikamand
+1. Brancher le ikamand électriquement.
+2. Appuyer 5-10 secondes sur le bouton setup du ikamand jusqu'à ce que la LED bleue clignotte rapidement. Il est alors en mode pairing de wifi. À ce moment, le ikamand émet un réseau wifi `ikamand-xxx`.
+3. Sur l'ordinateur qui fait rouler ce serveur, se connecter au Wi-Fi du ikamand.
+4. Garder aussi cet ordinateur connecté au réseau de la maison, par exemple avec un câble Ethernet. C'est nécessaire parce qu'on n'a pas réussi à connecter le ikamand directement au Wi-Fi de la maison: l'ordinateur sert de pont entre le ikamand et le réseau maison.
+5. Sur l'ordinateur, démarrer le serveur avec:
+
+```sh
+npm start
+```
+
+6. Sur le même ordinateur, ouvrir:
+
+```text
+http://localhost:3000/#
+```
+
+7. Pour se connecter avec un autre téléphone, une tablette ou un autre ordinateur, utiliser l'adresse réseau affichée dans la console au démarrage. Elle ressemble à:
+
+```text
+http://192.168.x.x:3000/#
+```
+
+L'autre appareil doit être connecté au même réseau maison que l'ordinateur qui roule le serveur.
+
+Pour arrêter le serveur:
+
+```sh
+npm stop
+```
 
 # Reste du read me
 
@@ -32,19 +55,19 @@ To start, download this repo and run:
 ```sh
 npm install
 npm install -g pm2
-pm2 start index.js --name "ikamand" -- -i <ip of your ikamand>
+npm start
 ```
 
 To stop run:
 
 ```sh
-pm2 stop ikamand
+npm stop
 ```
 
 To see the logs run:
 
 ```sh
-pm2 logs ikamand
+npm run logs
 ```
 
 # Usage

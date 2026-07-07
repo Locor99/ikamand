@@ -1,1 +1,0 @@
-pm2 start index.js --name "ikamand" -- -i 192.168.10.1
