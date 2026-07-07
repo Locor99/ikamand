@@ -1,4 +1,4 @@
 @echo off
-cd /d D:\Users\guere\Documents\Pycharm\ikamand\ikamand
+cd /d "%~dp0"
 pm2 start ecosystem.config.js
 pause
