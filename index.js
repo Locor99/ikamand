@@ -1,4 +1,5 @@
 var http = require('http');
+var os = require('os');
 var httpProxy = require('http-proxy');
 var { program } = require('commander');
 var finalhandler = require('finalhandler');
@@ -11,7 +12,46 @@ program
   .option('-p, --port <post>', 'The server port', 3000);
 program.parse();
 
-console.log(`Starting server on port '${program.opts().port}' and forwarding to '${program.opts().ikamand}'`);
+function getLocalNetworkUrls(port) {
+  return Object.entries(os.networkInterfaces())
+    .flatMap(([name, networkInterfaces]) => {
+      return networkInterfaces.map((networkInterface) => ({ name, networkInterface }));
+    })
+    .filter((networkInterface) => {
+      var name = networkInterface.name.toLowerCase();
+
+      return networkInterface.networkInterface
+        && networkInterface.networkInterface.family === "IPv4"
+        && !networkInterface.networkInterface.internal
+        && !name.includes("vethernet")
+        && !name.includes("virtualbox")
+        && !name.includes("vmware")
+        && !name.includes("bluetooth");
+    })
+    .map((networkInterface) => {
+      return {
+        name: networkInterface.name,
+        url: `http://${networkInterface.networkInterface.address}:${port}/#`
+      };
+    });
+}
+
+function logStartupInstructions(port, ikamand) {
+  var networkUrls = getLocalNetworkUrls(port);
+
+  console.log(`Starting server on port '${port}' and forwarding to '${ikamand}'`);
+  console.log(`Local computer: http://localhost:${port}/#`);
+
+  if (networkUrls.length) {
+    console.log("Other devices on the same network:");
+    console.log("Use the address for the network your phone/computer is connected to.");
+    networkUrls.forEach((networkUrl) => console.log(`  ${networkUrl.name}: ${networkUrl.url}`));
+  } else {
+    console.log("Other devices: no active network address found.");
+  }
+}
+
+logStartupInstructions(program.opts().port, program.opts().ikamand);
 
 var serve = serveStatic("public");
 

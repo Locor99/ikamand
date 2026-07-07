@@ -2,7 +2,12 @@
   "name": "ikamand",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "pm2 start ecosystem.config.js && pm2 logs ikamand --lines 20 --nostream",
+    "stop": "pm2 stop ikamand",
+    "logs": "pm2 logs ikamand",
+    "status": "pm2 status"
+  },
   "dependencies": {
     "commander": "^10.0.1",
     "finalhandler": "^1.2.0",
