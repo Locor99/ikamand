@@ -1,5 +1,15 @@
 # iKamand App
 
+# Gilles: pour faire fonctionner le ikamand
+1. Brancher le ikamand électriquement
+2. Appuyer 5-10 secondes sur le bouton setup du ikamand jusqu'à ce que la LED bleue clignotte rapidement. Il est alors en mode pairing de wifi. À ce moment, le ikamand émet un réseau wifi ikamand-xxx.
+3. Sur un ordinateur, se connecter au wifi du ikamand
+4. Sur l'ordinateur, démarrer le serveur en double cliquant sur "start_ikamand.bat".
+5. Sur un navigateur web, accéder à http://localhost:3000/#
+6. Un dashboard devrait apparaitre avec la page web pour contrôler le ikamand
+
+# Reste du read me
+
 > The iKamand II is a smart BBQ controller that gives you full control of your Kamado Joe all from your smart device. The device attaches to the bottom vent of your kamado and controls the airflow in your grill with the iKamand app. From the app, you can start, stop, monitor and change your cook with ease. Grill or smoke using your own temperature and cook time, or choose from a variety of recipes included with the app. When an iKamand recipe is chosen, the cook time and temperature is automatically loaded to cook your food perfectly. The app also features constantly updated content, such as videos, tutorials and posts that will keep your kamado grillmastery at its peak. The iKamand starts up quickly and operates quietly. The device is also designed to hold up to four (4) temperature probes and to be weather resistant. All metal components are made of stainless steel. This model fits Kamado Joe Classic grills.
 
 Although this seems fairly awesome, the makers - Kamado Joe/Desora - have discontinued the iKamand app and the Kamado Joe users have been left with a paper weight. Thanks to some great research though it was discovered that iKamand has an API that can be called directly to control it's functions.
